@@ -21,3 +21,7 @@ therefor it is possible that ssllabs.com is learning which domains you are visit
    * Clear Result Cache 
    * Cache Results for <X> Hours
  * Better Icons?
+
+
+## Sourcecode
+the Project page of this extension could be found at github: https://github.com/wolffc/sslgrade-chrome
