@@ -5,23 +5,23 @@ Author: Christian Wolff <chris@connye.com>
 
 ## About
 
-this extension downloads the Quality Rating of your SSL Connection from SSLLabs.com. and displays an 
-icon matching the rating in the adress bar. this makes it easyly to discover SSL problems on the sites your visiting.
+This extension downloads the Quality Rating of your SSL Connection from SSLLabs.com and displays an 
+icon matching the rating in the adress bar. This makes it easy to discover SSL problems on the sites you are visiting.
 
 ## Privacy
-This extension itself does not Collect Any Data. but as it is queryinig an third party Service:
+This extension itself does not collect any data but as it is querying a third party service:
 ``https://api.ssllabs.com/api/v2/analyze?host=<domain.tld>``
-therefor it is possible that ssllabs.com is learning which domains you are visiting.
+therefore it is possible that ssllabs.com is learning which domains you are visiting.
 
 ## TODOs:
- * Handling of Domains Where no Result is in Cache.
- * Caching of Results instead of always query the api.
- * configurtation Options: 
-   * Do Not query Automatically
-   * Clear Result Cache 
-   * Cache Results for <X> Hours
- * Better Icons?
+ * Handling of domains where no result is in cache.
+ * Caching of results instead of always query the api.
+ * configurtation ptions: 
+   * Do not query automatically
+   * Clear result cache 
+   * Cache results for <X> hours
+ * Better icons?
 
 
 ## Sourcecode
-the Project page of this extension could be found at github: https://github.com/wolffc/sslgrade-chrome
+The Project page of this extension could be found at github: https://github.com/wolffc/sslgrade-chrome
