@@ -3,7 +3,10 @@ sslLabs = {
 	cache: {},
 	tab_id: 0,
 	last_domain: "",
+	// Detect HTTP Urls
 	https_pattern: /^https:\/\//,
+	// Remove the Domain From URL it might be an HTTP url
+	domain_pattern: /^http(s|):\/\//,
 	api_url: "https://api.ssllabs.com/api/v2/analyze?host=",
 	detail_url: "https://www.ssllabs.com/ssltest/analyze.html?&hideResults=on&d=",
 
@@ -41,7 +44,7 @@ sslLabs = {
 	 * @return {string}     the grade of the url or NO if no lookup coul be found
 	 */
 	getDomainFromUrl: function(url){
-		domain = url.replace(this.https_pattern,"").split("/")[0];
+		domain = url.replace(this.domain_pattern,"").split("/")[0];
 		return domain;
 	},
 

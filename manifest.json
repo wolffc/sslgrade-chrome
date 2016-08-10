@@ -3,7 +3,7 @@
 
   "name": "SSL Grade",
   "description": "This Extension Uses the SSLLabs SSL Test to Show a Security Rating of the SSL connection You Are Using",
-  "version": "1.1",
+  "version": "1.1.1",
 
 
   "page_action": {
