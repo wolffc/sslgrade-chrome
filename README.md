@@ -6,6 +6,10 @@ This makes it easy to discover TLS configuration problems on the sites you are v
 
 Currently only supports Google Chrome and other Chromium based browsers.
 
+### Grading
+
+SSLLabs uses [A+ for best and F for worst](https://github.com/ssllabs/research/wiki/SSL-Server-Rating-Guide), with [special cases T and M](https://blog.qualys.com/product-tech/2014/06/17/ssl-labs-new-grades-for-trust-t-and-mismatch-m-issues).
+
 ## Privacy
 This extension itself does not collect any data, but as it is querying a third party service:
 `https://api.ssllabs.com/api/v2/analyze?host=<domain.tld>`

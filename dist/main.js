@@ -1,3 +1,7 @@
+/* TESTING domains
+Fails to resolve on ssllabs - will throw error https://rentry.org/
+
+*/
 let sslLabs = {
 	cache: {},
 	tab_id: 0,
@@ -6,7 +10,7 @@ let sslLabs = {
 	https_pattern: /^https:\/\//,
 	// Remove the Domain From URL it might be an HTTP url
 	domain_pattern: /^http(s|):\/\//,
-	api_url: "https://api.ssllabs.com/api/v2/analyze?host=",
+	api_url: "https://api.ssllabs.com/api/v3/analyze?host=",
 	detail_url: "https://www.ssllabs.com/ssltest/analyze.html?&hideResults=on&d=",
 
 	onChange: function(url, tabId){
@@ -20,10 +24,30 @@ let sslLabs = {
 			fetch(sslLabs.api_url + domain)
 				.then(response => response.json())
 				.then(data => {
-					if (data && data.endpoints && data.endpoints[0]) {
-						grade = data.endpoints[0].grade;
-						sslLabs.setIcon(grade);
+					console.log(data)
+					const grades = ['A+', 'A', 'A-', 'B', 'C', 'D', 'E', 'F', 'M', 'T'];
+					let worstGrade = -1;
+					let allReady = true;
+					let errorGrade = false;
+
+					if (data && data.status === 'ERROR') {
+						errorGrade = true;
+					} else if (data && data.status === 'IN_PROGRESS' || data.status === 'DNS') {
+						allReady = false;
+					} else if (data && data.status === 'READY' && data.endpoints) {
+						for (const endpoint of data.endpoints) {
+							const gradeIndex = grades.indexOf(endpoint.grade);
+							if (gradeIndex > worstGrade) {
+								worstGrade = gradeIndex;
+							}
+						}
 					}
+
+				if (errorGrade) {
+					sslLabs.setIcon('error');
+				} else if (allReady && worstGrade > -1) {
+					sslLabs.setIcon(grades[worstGrade]);
+				}
 				})
 				.catch(error => {
 					console.error('Error fetching JSON data:', error);
@@ -46,7 +70,7 @@ let sslLabs = {
 	/**
 	 * Returns the domain from an url
 	 * @param  {string} url the url to for domain extrantion
-	 * @return {string}     the grade of the url or NO if no lookup coul be found
+	 * @return {string}     the grade of the url or NO if no lookup could be found
 	 */
 	getDomainFromUrl: function(url){
 		let domain = url.replace(this.domain_pattern,"").split("/")[0];
