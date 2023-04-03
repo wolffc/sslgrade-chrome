@@ -12,7 +12,7 @@ SSLLabs uses [A+ for best and F for worst](https://github.com/ssllabs/research/w
 
 ## Privacy
 This extension itself does not collect any data, but as it is querying a third party service:
-`https://api.ssllabs.com/api/v2/analyze?host=<domain.tld>`
+`https://api.ssllabs.com/api/v3/analyze?host=<domain.tld>`
 therefore it is possible that ssllabs.com is learning which domains you are visiting.
 
 ## TODOs:

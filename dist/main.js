@@ -1,5 +1,6 @@
 /* TESTING domains
 Fails to resolve on ssllabs - will throw error https://rentry.org/
+https://github.com/ throws the change event thrice
 
 */
 let sslLabs = {
@@ -45,6 +46,8 @@ let sslLabs = {
 
 				if (errorGrade) {
 					sslLabs.setIcon('error');
+				} else if (!allReady) {
+					sslLabs.setIcon('waiting');
 				} else if (allReady && worstGrade > -1) {
 					sslLabs.setIcon(grades[worstGrade]);
 				}
