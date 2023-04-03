@@ -1,14 +1,14 @@
-# SSL Grade (Chrome Extension)
-Author: Christian Wolff <chris@connye.com>
-
-
+# TLS Grade (Browser Extension)
 ## About
-This extension downloads the Quality Rating of your SSL Connection from SSLLabs.com and displays an
-icon matching the rating in the adress bar. This makes it easy to discover SSL problems on the sites you are visiting.
+This extension downloads the Quality Rating of your TLS Connection from SSLLabs.com and displays an icon matching the rating in the adress bar.
+
+This makes it easy to discover TLS configuration problems on the sites you are visiting.
+
+Currently only supports Google Chrome and other Chromium based browsers.
 
 ## Privacy
-This extension itself does not collect any data but as it is querying a third party service:
-``https://api.ssllabs.com/api/v2/analyze?host=<domain.tld>``
+This extension itself does not collect any data, but as it is querying a third party service:
+`https://api.ssllabs.com/api/v2/analyze?host=<domain.tld>`
 therefore it is possible that ssllabs.com is learning which domains you are visiting.
 
 ## TODOs:
@@ -21,5 +21,7 @@ therefore it is possible that ssllabs.com is learning which domains you are visi
  * Better icons?
 
 
-## Sourcecode
-The Project page of this extension could be found at github: https://github.com/wolffc/sslgrade-chrome
+## Source code
+Project page can be found on GitHub: https://github.com/C0rn3j/TLSGrade
+
+Forked from: https://github.com/wolffc/sslgrade-chrome
