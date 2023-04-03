@@ -1,11 +1,9 @@
 # SSL Grade (Chrome Extension)
-
 Author: Christian Wolff <chris@connye.com>
 
 
 ## About
-
-This extension downloads the Quality Rating of your SSL Connection from SSLLabs.com and displays an 
+This extension downloads the Quality Rating of your SSL Connection from SSLLabs.com and displays an
 icon matching the rating in the adress bar. This makes it easy to discover SSL problems on the sites you are visiting.
 
 ## Privacy
@@ -16,9 +14,9 @@ therefore it is possible that ssllabs.com is learning which domains you are visi
 ## TODOs:
  * Handling of domains where no result is in cache.
  * Caching of results instead of always query the api.
- * configurtation ptions: 
+ * Configuration options:
    * Do not query automatically
-   * Clear result cache 
+   * Clear result cache
    * Cache results for <X> hours
  * Better icons?
 

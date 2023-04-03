@@ -1,5 +1,4 @@
-
-sslLabs = {
+let sslLabs = {
 	cache: {},
 	tab_id: 0,
 	last_domain: "",
@@ -12,29 +11,35 @@ sslLabs = {
 
 	onChange: function(url, tabId){
 		sslLabs.tab_id = tabId;
-		grade = 'no';
+		let grade = 'no';
 		if(url.match(this.https_pattern)){
-			domain = this.getDomainFromUrl(url);
+			let domain = this.getDomainFromUrl(url);
 			if(this.cache[domain]){
 				grade = this.cache[domain];
 			}
-			$.getJSON(sslLabs.api_url + domain, function(data){
-				grade = data.endpoints[0].grade;
-				sslLabs.setIcon(grade);
-			});
+			fetch(sslLabs.api_url + domain)
+				.then(response => response.json())
+				.then(data => {
+					if (data && data.endpoints && data.endpoints[0]) {
+						grade = data.endpoints[0].grade;
+						sslLabs.setIcon(grade);
+					}
+				})
+				.catch(error => {
+					console.error('Error fetching JSON data:', error);
+				});
 			return;
 		}
 		return this.setIcon(grade);
 	},
 
 	setIcon: function(grade){
-		console.log("*** GRADE: " +grade);
-		iconOptions = {};
+		console.log("*** GRADE: " + grade);
+		let iconOptions = {};
 		iconOptions.tabId = sslLabs.tab_id;
-		iconOptions.path = 'icons/' + grade.toLowerCase() + '.png';
+		iconOptions.path = '../icons/' + grade.toLowerCase() + '.png';
 
-		chrome.pageAction.setIcon(iconOptions);
-		chrome.pageAction.show(sslLabs.tab_id);
+		chrome.action.setIcon(iconOptions);
 		return true;
 	},
 
@@ -44,7 +49,7 @@ sslLabs = {
 	 * @return {string}     the grade of the url or NO if no lookup coul be found
 	 */
 	getDomainFromUrl: function(url){
-		domain = url.replace(this.domain_pattern,"").split("/")[0];
+		let domain = url.replace(this.domain_pattern,"").split("/")[0];
 		return domain;
 	},
 
@@ -53,9 +58,9 @@ sslLabs = {
 	}
 };
 
-chrome.pageAction.onClicked.addListener(function(tab){
+chrome.action.onClicked.addListener(function(tab){
 	console.log("click");
-	domain = sslLabs.getDomainFromUrl(tab.url);
+	let domain = sslLabs.getDomainFromUrl(tab.url);
 	chrome.tabs.create({ url: sslLabs.detail_url + domain });
 });
 
@@ -65,5 +70,3 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 		sslLabs.onChange(tab.url, tabId);
 	}
 });
-
-
