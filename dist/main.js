@@ -3,6 +3,13 @@ Fails to resolve on ssllabs - will throw error https://rentry.org/
 https://github.com/ throws the change event thrice
 
 */
+function callback() {
+	if (chrome.runtime.lastError) {
+		console.log('Looks like a tab died while we were processing it:', chrome.runtime.lastError.message);
+	} else {
+		// Tab exists
+	}
+}
 let sslLabs = {
 	cache: {},
 	tab_id: 0,
@@ -66,7 +73,7 @@ let sslLabs = {
 		iconOptions.tabId = sslLabs.tab_id;
 		iconOptions.path = '../icons/' + grade.toLowerCase() + '.png';
 
-		chrome.action.setIcon(iconOptions);
+		chrome.action.setIcon(iconOptions, callback);
 		return true;
 	},
 
