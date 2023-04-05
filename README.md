@@ -29,3 +29,13 @@ therefore it is possible that ssllabs.com is learning which domains you are visi
 Project page can be found on GitHub: https://github.com/C0rn3j/TLSGrade
 
 Forked from: https://github.com/wolffc/sslgrade-chrome
+
+## Developer instructions
+
+Run the following to build the JS from the TS and pack the extension for Firefox and Chromium based browsers as a ZIP.
+
+```bash
+npm install
+npm run build
+web-ext build
+```
