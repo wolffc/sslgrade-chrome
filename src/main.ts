@@ -92,8 +92,26 @@ let sslLabs = {
 	},
 }
 
-chrome.action.onClicked.addListener(function(tab){
+chrome.action.onClicked.addListener(async function(tab) {
 	console.log('Click')
+
+	// Firefox perms - the second await breaks this function in mysterious ways where the permission request won't fire at all, so proper checks are commented out
+
+	// Make sure we have the necessary permissions first as they have to be requested on Firefox
+	// If browser does not exist, we are definitely not in Chromium-based browsers, and we only currently support Firefox in addition to Chromium
+	if (typeof browser === 'undefined') {
+		// Expecting Chromium, do nothing
+	} else {
+//		const browserInfo = await browser.runtime.getBrowserInfo()
+//		if (browserInfo.name === 'Firefox') {
+			console.log('Requesting permissions')
+			const permissions = { origins: ['https://api.ssllabs.com/'] }
+			await browser.permissions.request(permissions)
+//		} else {
+//			alert('Unsupported browser: ' + browserInfo.name)
+//		}
+	}
+
 	let tabUrl;
 	if (tab.url) {
 		tabUrl = tab.url

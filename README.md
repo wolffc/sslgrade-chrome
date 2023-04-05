@@ -37,5 +37,13 @@ Run the following to build the JS from the TS and pack the extension for Firefox
 ```bash
 npm install
 npm run build
-web-ext build
+
+# Test on Firefox
+web-ext run
+
+# Build for Chromium(-based)
+ln -sf manifest-chromium.json manifest.json && web-ext build
+
+# Build for Firefox
+ln -sf manifest-firefox.json manifest.json && web-ext build
 ```
