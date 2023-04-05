@@ -18,7 +18,8 @@ let sslLabs = {
 	https_pattern: /^https:\/\//,
 	// Remove the Domain From URL it might be an HTTP url
 	domain_pattern: /^http(s|):\/\//,
-	api_url: "https://api.ssllabs.com/api/v3/analyze?host=",
+	// https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md
+	api_url: "https://api.ssllabs.com/api/v3/analyze?fromCache=on&maxAge=48&host=",
 	detail_url: "https://www.ssllabs.com/ssltest/analyze.html?&hideResults=on&d=",
 
 	onChange: function(url, tabId){
@@ -87,9 +88,6 @@ let sslLabs = {
 		return domain;
 	},
 
-	getApiUrl: function(domain){
-		return ;
-	}
 };
 
 chrome.action.onClicked.addListener(function(tab){
@@ -100,6 +98,7 @@ chrome.action.onClicked.addListener(function(tab){
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	// Be Nice to ssllabs and only query on page loading (not again on complete)
+	// This is poor, sites throw multiple loading changes
 	if(changeInfo.status == "loading"){
 		sslLabs.onChange(tab.url, tabId);
 	}
