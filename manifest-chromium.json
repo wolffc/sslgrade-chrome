@@ -19,10 +19,5 @@
 		"tabs",
 		"storage"
 	],
-	"host_permissions": ["https://api.ssllabs.com/"],
-	"browser_specific_settings": {
-		"gecko": {
-			"id": "TLSGrade@rys.pw"
-		}
-	}
+	"host_permissions": ["https://api.ssllabs.com/"]
 }

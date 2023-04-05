@@ -35,7 +35,10 @@ Forked from: https://github.com/wolffc/sslgrade-chrome
 Run the following to build the JS from the TS and pack the extension for Firefox and Chromium based browsers as a ZIP.
 
 ```bash
+# Install dependencies
 npm install
+
+# Compile the TS into JS
 npm run build
 
 # Test on Firefox
