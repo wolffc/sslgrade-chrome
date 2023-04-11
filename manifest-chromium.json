@@ -1,0 +1,23 @@
+{
+	"manifest_version": 3,
+	"name": "TLS Grade",
+	"description": "Uses the SSLLabs TLS test to show a security rating of the connection",
+	"version": "1.1.2",
+	"action": {
+		"default_icon":  "icons/no.png",
+		"default_title": "SSL Grade"
+	},
+	"background": {
+		"service_worker": "./dist/main.js",
+		"type": "module"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	},
+	"permissions": [
+		"tabs",
+		"storage"
+	],
+	"host_permissions": ["https://api.ssllabs.com/"]
+}

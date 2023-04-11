@@ -1,22 +1,18 @@
 {
-  "manifest_version": 2,
-
-  "name": "SSL Grade",
-  "description": "This Extension Uses the SSLLabs SSL Test to Show a Security Rating of the SSL connection You Are Using",
-  "version": "1.1.1",
-
-
-  "page_action": {
+  "manifest_version": 3,
+  "name": "TLS Grade",
+  "description": "Uses the SSLLabs TLS test to show a security rating of the connection",
+  "version": "1.1.2",
+  "action": {
     "default_icon":  "icons/no.png",
     "default_title": "SSL Grade"
   },
   "background": {
-      "scripts": ["jquery.js","main.js"]
-    },
+    "service_worker": "./dist/main.js",
+    "type": "module"
+  },
   "permissions": [
-    "activeTab",
-    "tabs",
-    "https://ajax.googleapis.com/",
-    "https://api.ssllabs.com/"
-  ]
+    "tabs"
+  ],
+  "host_permissions": ["https://api.ssllabs.com/"]
 }
